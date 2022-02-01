@@ -1,30 +1,17 @@
 package com.example.lesson1
 
-class MainPresenter (private val view: MainView) {
+import com.github.terrakok.cicerone.Router
+import moxy.MvpPresenter
 
-    private val model = CountersModel()
 
-    fun counterClick(id: Buttons) {
-        when (id) {
-            Buttons.FIRST ->{
-                val nextValue = model.next(0)
-                view.setButtonText(0, nextValue.toString())
-            }
-            Buttons.SECOND ->{
-                val nextValue = model.next(1)
-                view.setButtonText(1, nextValue.toString())
-            }
-            Buttons.THIRD ->{
-                val nextValue = model.next(2)
-                view.setButtonText(2, nextValue.toString())
-            }
-        }
+class MainPresenter (val router: Router, val screen: IScreens) : MvpPresenter<MainView>() {
+
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        router.replaceScreen(screen.users())
     }
 
-    enum class Buttons(){
-        FIRST,
-        SECOND,
-        THIRD
+    fun backClicked() {
+        router.exit()
     }
-
 }

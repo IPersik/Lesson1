@@ -2,6 +2,7 @@ package com.example.lesson1
 
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.Screen
+import io.reactivex.rxjava3.core.Observable
 import moxy.MvpPresenter
 
 class UsersPresenter(val usersRepo: GithubUsersRepo, val router: Router) : MvpPresenter<UsersView>() {
@@ -38,5 +39,10 @@ class UsersPresenter(val usersRepo: GithubUsersRepo, val router: Router) : MvpPr
         router.exit()
         return true
     }
+
+
 }
+
+
+
 

@@ -6,18 +6,23 @@ import com.github.terrakok.cicerone.Router
 
 class App: Application() {
 
-    companion object{
-        lateinit var instance: App
-    }
+    private val cicerone: Cicerone<Router> by lazy { Cicerone.create() }
 
-    private val cicerone: Cicerone<Router> by lazy{
-        Cicerone.create()
-    }
-    val navigatorHolder get() = cicerone.getNavigatorHolder()
-    val router get() = cicerone.router
+    val navigationHolder
+        get() = cicerone.getNavigatorHolder()
+
+    val router
+        get() = cicerone.router
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
+        _instance = this
+    }
+
+    companion object {
+
+        private var _instance: App? = null
+        val instance
+            get() = _instance!!
     }
 }

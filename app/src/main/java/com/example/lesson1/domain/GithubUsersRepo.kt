@@ -1,8 +1,10 @@
-package com.example.lesson1
+package com.example.lesson1.domain
+
+import com.example.lesson1.model.GithubUser
 
 
 class GithubUsersRepo {
-    private val repositories = listOf(
+    private val users = listOf(
         GithubUser("login1"),
         GithubUser("login2"),
         GithubUser("login3"),
@@ -12,7 +14,7 @@ class GithubUsersRepo {
 
 
     fun getUsers(): List<GithubUser> {
-        return repositories
+        return users
     }
 }
 

@@ -1,19 +1,27 @@
 package com.example.lesson1.ui.main
 
+import android.os.Bundle
 import com.example.lesson1.App
 import com.example.lesson1.MainView
 import com.example.lesson1.R
+import com.example.lesson1.databinding.ActivityMainBinding
 import com.example.lesson1.ui.base.BackButtonListener
 
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
-class MainActivity : MvpAppCompatActivity(R.layout.activity_main), MainView {
+class MainActivity : MvpAppCompatActivity(), MainView {
 
     val navigator = AppNavigator(this, R.id.container)
-
     private val presenter by moxyPresenter { MainPresenter(App.instance.router) }
+    private var vb: ActivityMainBinding? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        vb = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(vb?.root)
+    }
 
     override fun onResumeFragments() {
         super.onResumeFragments()

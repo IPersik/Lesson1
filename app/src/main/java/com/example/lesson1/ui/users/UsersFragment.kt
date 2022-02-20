@@ -29,19 +29,27 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     private val binding
         get() = _binding!!
 
+
     private val adapter by lazy {
         UsersAdapter { presenter.onUserClicked() }
     }
+
+    private var vb: FragmentUserBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentUserBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+     fun init() {
+        vb?.usersRecycler?.layoutManager = LinearLayoutManager(context)
+        vb?.usersRecycler?.adapter = adapter
+        vb?.btnGoToImgConverter?.setOnClickListener { presenter.goToImageConverter() }
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

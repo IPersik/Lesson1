@@ -11,6 +11,7 @@ import com.example.lesson1.model.GithubUser
 
 class UsersAdapter(
     private val itemClickListener: (GithubUser) -> Unit,
+
 ) : ListAdapter<GithubUser, UsersAdapter.UserViewHolder>(GithubUserItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {

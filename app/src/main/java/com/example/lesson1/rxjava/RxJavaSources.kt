@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
 import kotlin.random.Random
 
-private fun randomResultOperation(): Boolean {
+fun randomResultOperation(): Boolean {
     Thread.sleep(Random.nextLong(1000))
     return listOf(true, false).random()
 }

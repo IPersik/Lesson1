@@ -1,4 +1,4 @@
-package com.example.lesson1
+package com.example.lesson1.screens
 
 import com.example.lesson1.imageconberter.ImageConverterFragment
 import com.example.lesson1.interfaces.IScreens

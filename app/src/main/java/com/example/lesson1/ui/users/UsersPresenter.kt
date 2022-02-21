@@ -1,12 +1,12 @@
 package com.example.lesson1.ui.users
 
-import com.example.lesson1.AndroidScreens
+import com.example.lesson1.screens.AndroidScreens
 import com.example.lesson1.domain.GithubUsersRepo
 import com.example.lesson1.model.GithubUser
 import com.github.terrakok.cicerone.Router
-import io.reactivex.rxjava3.core.SingleObserver
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 
 class UsersPresenter(
@@ -14,20 +14,6 @@ class UsersPresenter(
     private val usersRepository: GithubUsersRepo,
 ) : MvpPresenter<UsersView>() {
 
-    class UsersListPresenter  {
-        val users = mutableListOf<GithubUser>()
-        var itemClickListener: ((UserItemView) -> Unit)? = null
-
-         fun getCount() = users.size
-
-         fun bindView(view: UserItemView) {
-            val user = users[view.pos]
-            }
-        }
-
-
-    val usersListPresenter = UsersPresenter.UsersListPresenter()
-    val disposables = CompositeDisposable()
 
     fun goToImageConverter() {
         router.navigateTo(AndroidScreens().imageConverter())
@@ -40,8 +26,16 @@ class UsersPresenter(
     }
 
     private fun loadData() {
-        val users = usersRepository.getUsers()
-        viewState.updateList(users)
+        usersRepository.getUsers()
+        .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { users ->
+                    viewState.updateList(users)
+                }, {
+                    viewState.showError(it.message)
+                }
+            )
     }
 
     fun backPressed(): Boolean {
@@ -49,9 +43,6 @@ class UsersPresenter(
         return true
     }
 
-    override fun onDestroy() {
-        disposables.clear()
-    }
 
     fun onUserClicked() {
         // todo

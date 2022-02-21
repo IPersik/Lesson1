@@ -1,20 +1,14 @@
 package com.example.lesson1.domain
 
 import com.example.lesson1.model.GithubUser
+import com.example.lesson1.network.GithubApiService
+import io.reactivex.rxjava3.core.Single
 
 
-class GithubUsersRepo {
-    private val users = listOf(
-        GithubUser("login1"),
-        GithubUser("login2"),
-        GithubUser("login3"),
-        GithubUser("login4"),
-        GithubUser("login5")
-    )
+class GithubUsersRepo (private val githubApiService: GithubApiService) : IGithubUsersRepository {
 
-
-    fun getUsers(): List<GithubUser> {
-        return users
+    override fun getUsers(): Single<List<GithubUser>> {
+        return githubApiService.getUsers()
     }
 }
 

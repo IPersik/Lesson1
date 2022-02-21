@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lesson1.App
 import com.example.lesson1.databinding.FragmentUserBinding
 import com.example.lesson1.domain.GithubUsersRepo
 import com.example.lesson1.model.GithubUser
+import com.example.lesson1.network.ApiHolder
 import com.example.lesson1.ui.base.BackButtonListener
+import com.example.lesson1.ui.base.GlideImageLoader
 import com.example.lesson1.ui.users.adapter.UsersAdapter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -21,7 +24,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     private val presenter by moxyPresenter {
         UsersPresenter(
             App.instance.router,
-            GithubUsersRepo()
+            GithubUsersRepo(ApiHolder.githubApiService)
         )
     }
 
@@ -31,7 +34,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
 
 
     private val adapter by lazy {
-        UsersAdapter { presenter.onUserClicked() }
+        UsersAdapter(GlideImageLoader()) { presenter.onUserClicked() }
     }
 
     private var vb: FragmentUserBinding? = null
@@ -65,5 +68,16 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
         presenter.backPressed()
         return true
     }
+    override fun showError(message: String?) {
+        Toast.makeText(requireContext(), message.orEmpty(), Toast.LENGTH_SHORT)
+            .show()
+    }
 
-}
+    companion object {
+
+        private const val KEY_INIT_PARAMS = "KEY_INIT_PARAMS"
+
+        fun newInstance(): UsersFragment {
+            return UsersFragment()
+        }
+}}

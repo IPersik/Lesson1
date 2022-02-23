@@ -7,7 +7,7 @@ import moxy.viewstate.strategy.StateStrategyType
 
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface ImageConverterView : ProgressView, ErrorView, MvpView {
+interface ImageConverterView : ErrorView, MvpView {
 
     fun init()
     fun showOriginImage(uri: Uri)

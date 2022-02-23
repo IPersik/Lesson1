@@ -10,9 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 object ApiHolder {
-    val githubApiService by lazy {
-        retrofit.create<GithubApiService>()
-    }
 
     private val okHttpClient by lazy {
         OkHttpClient().newBuilder()

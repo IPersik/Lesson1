@@ -11,7 +11,7 @@ import com.example.lesson1.App
 import com.example.lesson1.databinding.FragmenConverterBinding
 import com.example.lesson1.interfaces.ImageConverterView
 import com.example.lesson1.model.ConverterJpgToPng
-import com.example.lesson1.ui.base.BackButtonListener
+import com.example.lesson1.interfaces.BackButtonListener
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -41,11 +41,9 @@ class ImageConverterFragment : MvpAppCompatFragment(), ImageConverterView, BackB
         }
     }
 
-    // методы интерфейсов
     override fun backPressed(): Boolean = presenter.backPressed()
 
     override fun init() {
-        hideProgressBar()
         hideErrorBar()
         btnStartConvertDisabled()
         btnAbortConvertDisabled()
@@ -71,14 +69,6 @@ class ImageConverterFragment : MvpAppCompatFragment(), ImageConverterView, BackB
 
     override fun showConvertedImage(uri: Uri) {
         vb.imgViewConvertedImg.setImageURI(uri)
-    }
-
-    override fun showProgressBar() {
-        vb.progressBar2.visibility = View.VISIBLE
-    }
-
-    override fun hideProgressBar() {
-        vb.progressBar2.visibility = View.GONE
     }
 
     override fun showErrorBar() {

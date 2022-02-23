@@ -31,7 +31,6 @@ class ImageConverterPresenter (
     }
 
     fun startConvertingPressed(imageUri: Uri) {
-        viewState.showProgressBar()
         viewState.signWaitingShow()
         viewState.signGetStartedHide()
         viewState.btnAbortConvertEnabled()
@@ -56,7 +55,6 @@ class ImageConverterPresenter (
 
     private fun onConvertingSuccess(uri: Uri) {
         viewState.showConvertedImage(uri)
-        viewState.hideProgressBar()
         viewState.btnAbortConvertDisabled()
         viewState.signAbortConvertHide()
         viewState.signWaitingHide()
@@ -64,13 +62,11 @@ class ImageConverterPresenter (
 
     private fun onConvertingError(e: Throwable?) {
         viewState.showErrorBar()
-        viewState.hideProgressBar()
         viewState.btnAbortConvertDisabled()
         viewState.signWaitingHide()
     }
 
     fun abortConvertImagePressed() {
-        viewState.hideProgressBar()
         viewState.signWaitingHide()
         viewState.btnAbortConvertDisabled()
         viewState.signAbortConvertShow()

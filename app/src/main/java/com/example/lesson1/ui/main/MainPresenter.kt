@@ -1,18 +1,16 @@
 package com.example.lesson1.ui.main
 
-import com.example.lesson1.MainView
 import com.example.lesson1.interfaces.IScreens
-import com.example.lesson1.screens.AppScreens
-import com.example.lesson1.ui.users.UsersView
+import com.example.lesson1.interfaces.MainView
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
 
-class MainPresenter (val router: Router) : MvpPresenter<MainView>() {
+class MainPresenter(val router: Router, val screens: IScreens) : MvpPresenter<MainView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        router.replaceScreen(AppScreens.usersScreen())
+        router.replaceScreen(screens.users())
     }
 
     fun backClicked() {

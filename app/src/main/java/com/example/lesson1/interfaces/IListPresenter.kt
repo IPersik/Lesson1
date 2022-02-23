@@ -1,8 +1,8 @@
-package com.example.lesson1.ui.base
+package com.example.lesson1.interfaces
 
 interface IListPresenter<V: IItemView> {
 
-    var itemClickListener: () -> Unit
+    var itemClickListener: ((V) -> Unit)?
 
     fun getCount(): Int
 

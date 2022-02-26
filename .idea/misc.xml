@@ -8,10 +8,12 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragmen_converter.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_repos.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_repository_info.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.12" />
+        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_user_info.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_users.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_repos.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_user.xml" value="0.1" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.3761904761904762" />
         <entry key="app/src/main/res/layout/repos_list_item.xml" value="0.15" />

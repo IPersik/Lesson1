@@ -11,7 +11,7 @@ import com.example.lesson1.App
 import com.example.lesson1.databinding.FragmenConverterBinding
 import com.example.lesson1.interfaces.ImageConverterView
 import com.example.lesson1.model.ConverterJpgToPng
-import com.example.lesson1.interfaces.BackButtonListener
+import com.example.lesson1.ui.base.BackButtonListener
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 

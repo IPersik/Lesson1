@@ -1,13 +1,11 @@
 package com.example.lesson1.userInfo
 
-import com.example.lesson1.interfaces.IMySchedulers
 import com.example.lesson1.interfaces.IReposListPresenter
 import com.example.lesson1.interfaces.RepoItemView
 import com.example.lesson1.interfaces.UserInfoView
 import com.example.lesson1.model.GithubUserAdvanced
 import com.example.lesson1.model.Repository
 import com.example.lesson1.model.RetrofitGitHubUserRepo
-import com.example.lesson1.screens.AndroidScreens
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.SingleObserver

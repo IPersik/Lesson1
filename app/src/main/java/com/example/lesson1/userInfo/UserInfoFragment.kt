@@ -8,12 +8,10 @@ import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lesson1.App
 import com.example.lesson1.databinding.FragmentUserInfoBinding
-import com.example.lesson1.interfaces.BackButtonListener
+import com.example.lesson1.ui.base.BackButtonListener
 import com.example.lesson1.interfaces.UserInfoView
 import com.example.lesson1.model.RetrofitGitHubUserRepo
-import com.example.lesson1.myschedulers.MySchedulersFactory
 import com.example.lesson1.retrofit.GitHubApiFactory
-import com.example.lesson1.ui.base.GlideImageLoader
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import rcom.example.lesson1.userInfo.ReposRVAdapter

@@ -8,6 +8,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 
+
 class UsersPresenter(
     private val router: Router,
     private val usersRepository: IGithubUsersRepository,

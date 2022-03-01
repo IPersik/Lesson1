@@ -9,9 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lesson1.App
 import com.example.lesson1.databinding.FragmentUsersBinding
 import com.example.lesson1.domain.model.GithubUserModel
-import com.example.lesson1.domain.users.GithubUsersRepository
-import com.example.lesson1.network.ApiHolder
-import com.example.lesson1.network.NetworkStatus
 import com.example.lesson1.ui.base.BackButtonListener
 import com.example.lesson1.ui.base.GlideImageLoader
 import com.example.lesson1.ui.users.adapter.UsersAdapter
@@ -22,14 +19,8 @@ import moxy.ktx.moxyPresenter
 class UsersFragment() : MvpAppCompatFragment(), UsersView, BackButtonListener {
 
     private val presenter by moxyPresenter {
-        UsersPresenter(
-            App.instance.router,
-            GithubUsersRepository(
-                ApiHolder.githubApiService,
-                App.instance.database.userDao,
-                NetworkStatus(requireContext())
-            )
-        )
+        App.instance.initUserSubcomponent()
+        App.instance.usersSubcomponent?.provideUsersPresenter()!!
     }
 
     private var _binding: FragmentUsersBinding? = null

@@ -10,10 +10,8 @@ import com.example.lesson1.App
 import com.example.lesson1.databinding.FragmentReposBinding
 import com.example.lesson1.domain.model.GithubRepoModel
 import com.example.lesson1.domain.model.GithubUserModel
-import com.example.lesson1.domain.repos.GithubReposRepository
-import com.example.lesson1.network.ApiHolder
-import com.example.lesson1.network.NetworkStatus
 import com.example.lesson1.ui.base.BackButtonListener
+import com.example.lesson1.ui.base.viewBinding
 import com.example.lesson1.ui.repos.adapter.ReposAdapter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -24,33 +22,15 @@ class ReposFragment : MvpAppCompatFragment(), ReposView, BackButtonListener {
         requireArguments().getParcelable<GithubUserModel>(KEY_USER_MODEL)!!
     }
 
-    private var _binding: FragmentReposBinding? = null
-    private val binding: FragmentReposBinding
-        get() = _binding!!
+    private val binding: FragmentReposBinding by viewBinding()
 
     private val presenter by moxyPresenter {
-        ReposPresenter(
-            userModel,
-            GithubReposRepository(
-                ApiHolder.githubApiService,
-                App.instance.database.reposDao,
-                NetworkStatus(requireContext())
-            ),
-            App.instance.router,
-        )
+        App.instance.initRepoSubcomponent()
+        App.instance.reposSubcomponent?.provideReposPresenterFactory()?.presenter(userModel)!!
     }
 
     private val adapter by lazy {
         ReposAdapter(presenter::onItemClicked)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentReposBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -67,11 +47,6 @@ class ReposFragment : MvpAppCompatFragment(), ReposView, BackButtonListener {
     override fun backPressed(): Boolean {
         presenter.backPressed()
         return true
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     companion object {

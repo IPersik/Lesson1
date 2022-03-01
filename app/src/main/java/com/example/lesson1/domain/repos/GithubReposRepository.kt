@@ -9,8 +9,9 @@ import com.example.lesson1.domain.model.Owner
 import com.example.lesson1.network.GithubApiService
 import com.example.lesson1.network.NetworkStatus
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class GithubReposRepository(
+class GithubReposRepository  @Inject constructor(
     private val githubApiService: GithubApiService,
     private val reposDao: ReposDao,
     private val networkStatus: NetworkStatus

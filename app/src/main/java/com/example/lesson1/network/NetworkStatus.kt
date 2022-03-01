@@ -9,13 +9,12 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 
-class NetworkStatus (context: Context) : INetworkStatus {
+class NetworkStatus (context: Context)  {
 
     private val statusSubject: BehaviorSubject<Boolean> = BehaviorSubject.create()
 
     private val connectivityManager = context.getSystemService<ConnectivityManager>()!!
     private val request = NetworkRequest.Builder().build()
-
     val networkStatusSubject = PublishSubject.create<Boolean>()
 
     init {
@@ -38,7 +37,7 @@ class NetworkStatus (context: Context) : INetworkStatus {
         })
     }
 
-    override fun isOnline() = statusSubject
+     fun isOnline() = statusSubject
 
-    override fun isOnlineSingle(): Single<Boolean> = networkStatusSubject.first(true)
+     fun isOnlineSingle(): Single<Boolean> = networkStatusSubject.first(true)
 }
